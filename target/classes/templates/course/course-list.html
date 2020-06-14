@@ -1,0 +1,110 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Gerenciar Cursos</title>
+</head>
+
+<body>
+
+	<div class="container">
+		<hr>
+		<form th:action="@{/courses/findById}" th:object="${course}">
+		
+			<div class="input-group mb-3">
+				<input type="text" th:name="courseId" class="form-control mb-4 col-4" placeholder="Buscar pelo Id" aria-describedby="basic-addon2">
+				<div class="input-group-append">
+					<button type="submit" class="btn btn-info col-20 mb-4">Buscar</button>
+				</div>
+			</div>
+		</form>
+		
+		
+		
+		<div th:object="${course}">
+			
+			<a th:href="@{/lessons/showList?courseId=}+*{id}" 
+								class="btn btn-primary btn-sm mb-3">Adicionar Aula</a>
+			<table class="table table-bordered table-striped">
+				
+				<thead class="thead-dark">
+				
+					<tr>
+					
+						<th th:text="Curso"/>
+						<th th:text="Periodo"/>
+					</tr>
+				
+				</thead>
+				
+				<tbody>
+				
+					<tr>
+						<td th:text="*{name}"/>
+						<td th:text="*{period.period}"/>
+					</tr>				
+				
+				</tbody>
+			
+			</table>
+			</div>
+			<hr>
+			<div>
+		
+			<table class="table table-bordered table-striped">
+				
+				<thead class="thead-dark">
+				
+					<tr>
+					
+						<th th:text="Lições"/>
+						<th>
+							Professor Responsavel
+						</th>
+						<th>
+							Semestre
+						</th>
+						<th>
+							Ações
+						</th>
+					
+					</tr>
+				
+				</thead>
+				
+				<tbody>
+				
+					<tr th:each="tempLessons : ${courseLesson}">
+						<td th:text="${tempLessons.lesson.name}" />
+						<td th:text="${tempLessons.teacher.name}"/>
+						<td th:text="${tempLessons.semester}" />
+						<td>
+							<a th:href="@{/coursesAndLessons/showFormForAddTeacher(courseId=${course.id},lessonId=${tempLessons.lesson.id},periodId=${course.period.id})}" 
+								class="btn btn-primary btn-sm mb-3">Associar Professores</a>
+							<a th:href="@{/coursesAndLessons/showFormForUpdateSemester(courseLessonId=${tempLessons.id})}" 
+								class="btn btn-primary btn-sm mb-3">Associar Semestre</a>
+							<a th:href="@{/coursesAndLessons/delete(courseLessonId=${tempLessons.id})}"
+								class="btn btn-danger btn-sm"
+								onclick="if(!(confirm('Tem Certeza de que quer deletar essa aula?'))) return false">
+								Deletar Curso
+							</a>
+						</td>
+					</tr>			
+					
+				</tbody>
+			
+			</table>
+			
+		</div>
+		<a th:href="@{/demo/home}">Voltar</a>
+	</div>
+</body>
+
+</html>

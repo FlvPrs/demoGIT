@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Adicionar Curso</title>
+</head>
+
+<body>
+
+	<div class="container">
+	
+		<h3>Adicionar Curso</h3>
+		<hr>
+		
+		
+		<form action="#" th:action="@{/courses/save}"
+						th:object="${course}" method="POST">
+			
+			<input type="hidden" th:field="*{id}"/>
+						
+			<input type="text" th:field="*{name}"
+				class="form-control mb-4 col-4" placeholder="Nome do Curso">
+				
+			<select th:field="*{period}" class="mdb-select md-form">
+				<option value="" disabled selected>Escolher Periodo</option>
+			    <option th:each="tempPeriod : ${listPeriod}" th:value="${tempPeriod.id}" th:text="${tempPeriod.period}">
+			    </option>
+			</select>
+				
+			<button type="submit" class="btn btn-info col-2">Salvar</button>
+						
+		</form>
+		
+		<hr>
+		<a th:href="@{/demo/home}">Voltar</a>
+	
+	</div>
+
+
+
+</body>
+
+</html>

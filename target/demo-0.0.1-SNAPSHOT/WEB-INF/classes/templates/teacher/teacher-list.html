@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Gerenciar Professor</title>
+</head>
+
+<body>
+
+	<div class="container">
+		<hr>
+		<form th:action="@{/teachers/findById}" th:object="${teacher}">
+		
+			<div class="input-group mb-3">
+				<input type="text" th:name="teacherId" class="form-control mb-4 col-4" placeholder="Buscar pelo Id" aria-describedby="basic-addon2">
+				<div class="input-group-append">
+					<button type="submit" class="btn btn-info col-20 mb-4">Buscar</button>
+				</div>
+			</div>
+		</form>
+		
+		
+		
+		<div th:object="${teacher}">
+		
+			<table class="table table-bordered table-striped">
+				
+				<thead class="thead-dark">
+				
+					<tr>
+					
+						<th th:text="Professor"/>
+					</tr>
+				
+				</thead>
+				
+				<tbody>
+				
+					<tr>
+						<td th:text="*{name}"/>
+					</tr>				
+				
+				</tbody>
+			
+			</table>
+		</div>
+		
+		<div>
+		
+			<table class="table table-bordered table-striped">
+				
+				<thead class="thead-dark">
+				
+					<tr>
+						
+						<th th:text="Curso"/>
+						<th th:text="lição"/>
+						<th th:text="Periodo"/>
+						<th th:text="Ação"/>
+					</tr>
+				
+				</thead>
+				
+				<tbody>
+					<tr th:each="tempCourse : ${courseLessons}">
+						<td th:text="${tempCourse.course.name}"/>
+						<td th:text="${tempCourse.lesson.name}"/>
+						<td th:text="${tempCourse.course.period.period}"/>
+						<td>
+							<a th:href="@{/teachers/removeLesson(teacherId=${teacher.id},periodId=${tempCourse.course.period.id},courseLessonId=${tempCourse.id})}"
+							class="btn btn-danger btn-sm"
+							onclick="if(!(confirm('Quer desassociar essa aula?'))) return false">
+							Delete
+							</a>
+						</td>
+					</tr>
+				
+				</tbody>
+			
+			</table>
+		</div>
+			<hr>
+
+		<a th:href="@{/demo/home}">Voltar</a>
+	</div>
+</body>
+
+</html>

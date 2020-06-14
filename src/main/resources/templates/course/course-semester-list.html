@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Assossiar Semestre</title>
+</head>
+
+<body>
+
+	<h2>Assosiando Semestre</h2>
+	<hr>
+	<div class="container">
+		<form action="#" th:action="@{/coursesAndLessons/save}" th:object="${courseLesson}" method="POST">
+						
+			<input type="hidden" th:field="*{id}"/>
+			
+			<input type="hidden" th:field="*{course}"/>
+			<span th:text="'Curso selecionado : ' + *{course.name}"></span>
+			<input type="hidden" th:field="*{teacher}"/>
+			
+			<input type="hidden" th:field="*{lesson}"/>
+			<br>
+			<span th:text="'Lição selecionada : ' + *{lesson.name}"></span>
+			
+			<h4>Escolher Semestre da Aula</h4>
+			<hr>	
+			<select th:field="*{semester}">
+			    <option th:value="1" th:text="1"/>
+			    <option th:value="2" th:text="2"/>
+			    <option th:value="3" th:text="3"/>
+			    <option th:value="4" th:text="4"/>
+			</select>
+			
+			<button type="submit" class="btn btn-info col-2">Salvar</button>
+		</form>
+		
+	</div>
+</body>
+
+</html>

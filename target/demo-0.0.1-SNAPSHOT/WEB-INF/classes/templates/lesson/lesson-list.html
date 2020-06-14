@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Gerenciar Curso</title>
+</head>
+
+<body>
+
+	<div class="container">
+	
+		
+		<div th:object="${course}">
+		
+			<h1>
+			    <span th:text="*{name}" th:remove="tag">title</span>
+			</h1>
+			
+			<table class="table table-bordered table-striped">
+				
+				<thead class="thead-dark">
+				
+					<tr>
+					
+						<th th:text="Lições"/>
+					
+					</tr>
+				
+				</thead>
+				
+				<tbody>
+				
+					<tr th:each="tempLessons : ${course.lessons}">
+						<td th:text="${tempLessons.name}"colspan="2" />
+					</tr>				
+				
+				</tbody>
+			
+			</table>
+			
+		</div>
+		
+		<form action="#" th:action="@{/coursesAndLessons/courseAddLesson}" th:object="${courseLesson}" method="POST">
+						
+				<input type="hidden" th:field="*{id}"/>
+				
+				<input type="hidden" th:field="*{semester}"/>
+				
+				<input type="hidden" th:field="*{course}"/>
+				
+				<h3>Adicionar Aula no curso</h3>
+				<hr>
+				<select th:field="*{lesson}">
+				    <option th:each="tempLessons : ${lessons}" th:value="${tempLessons.id}" th:text="${tempLessons.name}"/>
+				</select>
+				
+				<button type="submit" class="btn btn-info col-2">Salvar</button>
+		</form>
+		
+		<hr>
+		
+		<a th:href="@{/demo/home}">Voltar</a>
+	</div>
+</body>
+
+</html>

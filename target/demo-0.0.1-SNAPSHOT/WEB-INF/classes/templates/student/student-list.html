@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Gerenciar Aluno</title>
+</head>
+
+<body>
+
+	<div class="container">
+		
+		<form th:action="@{/students/findById}" th:object="${student}">
+		
+			<div class="input-group mb-3">
+				<input type="text" th:name="studentId" class="form-control mb-4 col-4" placeholder="Buscar Aluno pela matricula" aria-describedby="basic-addon2">
+				<div class="input-group-append">
+					<button type="submit" class="btn btn-info col-20 mb-4">Buscar</button>
+				</div>
+			</div>
+		</form>
+		
+		
+		
+		<div th:object="${student}">
+		<a th:href="@{/students/addCourse(studentId=*{id})}" 
+					class="btn btn-primary btn-sm mb-3">Associar Curso</a>
+		
+			<table class="table table-bordered table-striped">
+				
+				<thead class="thead-dark">
+				
+					<tr>
+					
+						<th th:text="'Nome : ' +*{firstName}+' '+*{lastName}"  />
+						<th th:text="'Matricula : ' + *{id}"  colspan="100%"/>
+						
+					
+					</tr>
+				
+				</thead>
+				
+				<tbody>
+				
+					<tr>
+					
+						<td th:text="'cpf : '+*{cpf}" />
+					</tr>
+				
+					<tr>
+					
+						<td th:text="'Cursando : ' + *{course.name}"/>
+					</tr>
+				
+				
+				</tbody>
+			
+			</table>
+			
+		</div>
+		<a th:href="@{/demo/home}">Voltar</a>
+	</div>
+</body>
+
+</html>

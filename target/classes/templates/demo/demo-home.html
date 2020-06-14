@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+	<title>Home</title>
+</head>
+
+<body>
+
+	<div class="container">
+		<div>
+			Adicionar
+			<hr>
+			<a th:href="@{/students/showFormForAdd}" 
+					class="btn btn-primary btn-sm mb-3">Alunos</a>
+			<a th:href="@{/courses/showFormForAdd}" 
+					class="btn btn-primary btn-sm mb-3">Curso</a>
+			<a th:href="@{/teachers/showFormForAdd}" 
+					class="btn btn-primary btn-sm mb-3">Professores</a>
+			<a th:href="@{/lessons/showFormForAdd}" 
+					class="btn btn-primary btn-sm mb-3">Lições</a>
+		</div>
+		<div>
+			Gerenciar
+			<hr>
+			<a th:href="@{/courses/showList}" 
+					class="btn btn-primary btn-sm mb-3">Curso</a>
+					<a th:href="@{/teachers/showList}" 
+					class="btn btn-primary btn-sm mb-3">Professores</a>
+		</div>
+		<div>
+			Atendimento
+			<hr>
+			<a th:href="@{/students/showList}" 
+					class="btn btn-primary btn-sm mb-3">Alunos</a>
+		</div>
+	
+	</div>
+</body>
+
+</html>
