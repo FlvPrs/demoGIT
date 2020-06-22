@@ -22,3 +22,5 @@ password = demo1234
 as configurações estão no /demo/src/main/resources/application.properties
 
 Na pasta /demo/src/main/resources/sql está o script do DB.
+
+O aplicativo está com spring boot, basta dar run/java Application na classe DemoApplication.java e abrir http://localhost:8080/
